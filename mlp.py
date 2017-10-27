@@ -6,16 +6,23 @@ This is a temporary script file.
 """
 
 import numpy as numpy
+import KTimage as kt
 
-
+def printKT(Q,i):
+    kt.exporttiles(array=Q, height=1, width=len(Q[0]), outer_height=1, outer_width=len(Q), filename="results/obs_W_1_"+i+".pgm")
+    
 input    = numpy.array([[0,0],[0,1],[1,0],[1,1]])
 expected = numpy.array([[0],[1],[1],[0]])
 
-trainingRuns= 5000
-hiddenLayerNeuronen = 100
+trainingRuns= 250000
+hiddenLayerNeuronen = 10
 inputDimension = 2
 outputDimension = 1
 learnRate = 0.1
+printAmount =  10
+j=0
+
+moduloWert = trainingRuns/printAmount
 
 weightsInputToHiddenLayer = numpy.random.uniform(-0.1,0.1,(hiddenLayerNeuronen,inputDimension))
 weightsHiddenToOutputLayer = numpy.random.uniform(-0.1,0.1,(outputDimension,hiddenLayerNeuronen))
@@ -45,6 +52,14 @@ for trainingRun in range(trainingRuns):
         biasHidden += learnRate * deltaHiddenLayer
 
         #if i == 0:
-        print("error")
-        print(error)
+        #print("error")
+       # print(error)
+        
+       
+        if trainingRun%moduloWert == 0 and i == 3:
+            j += 1            
+            print (moduloWert)
+            print ("hiermal")
+            print("error"+str(error))
+            printKT(weightsInputToHiddenLayer, str(j))
 
