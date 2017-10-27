@@ -22,7 +22,7 @@ learnRate = 0.1
 printAmount =  10
 j=0
 
-moduloWert = trainingRuns/printAmount
+amountWhenPrint = trainingRuns/printAmount
 
 weightsInputToHiddenLayer = numpy.random.uniform(-0.1,0.1,(hiddenLayerNeuronen,inputDimension))
 weightsHiddenToOutputLayer = numpy.random.uniform(-0.1,0.1,(outputDimension,hiddenLayerNeuronen))
@@ -53,13 +53,12 @@ for trainingRun in range(trainingRuns):
 
         #if i == 0:
         #print("error")
-       # print(error)
+        # print(error)
         
        
-        if trainingRun%moduloWert == 0 and i == 3:
+        if trainingRun%amountWhenPrint == 0 and i == 3:
             j += 1            
-            print (moduloWert)
-            print ("hiermal")
-            print("error"+str(error))
+            print("Now at Run No."+str(trainingRun))
+            print("Error rate:"+str(error))
             printKT(weightsInputToHiddenLayer, str(j))
 
